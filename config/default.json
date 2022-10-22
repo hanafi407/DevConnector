@@ -1,5 +1,7 @@
 {
-  "mongoURI":"mongodb+srv://hanafi123:hanafi123@cluster0.bvywv.mongodb.net/?retryWrites=true&w=majority",
-  "jwtSecret":"mySecretToken"
+  "mongoURI":"mongodb://hanafi123:hanafi123@cluster0-shard-00-00.bvywv.mongodb.net:27017,cluster0-shard-00-01.bvywv.mongodb.net:27017,cluster0-shard-00-02.bvywv.mongodb.net:27017/?ssl=true&replicaSet=atlas-10s9n3-shard-0&authSource=admin&retryWrites=true&w=majority",
+  "jwtSecret":"mySecretToken",
+  "githubClientId":"1120b08754c88dafa1f6",
+  "githubSecret":"b5d9ec670150d5da92bf226e08c67e151421fb1a"
 }
 
