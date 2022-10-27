@@ -208,7 +208,7 @@ router.post(
 //@route delete api/post/comment/:id/:comment_id
 //desc delete comment
 //@access Private
-router.delete("/comment/:id/:comment_id",auth,async(req,res)=>{
+router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 
@@ -238,8 +238,8 @@ router.delete("/comment/:id/:comment_id",auth,async(req,res)=>{
 
     res.json(post.comments);
   } catch (err) {
-    console.error(err.message)
-    res.status(500).send('server error')
+    console.error(err.message);
+    res.status(500).send("server error");
   }
 });
 
