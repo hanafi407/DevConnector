@@ -4,6 +4,7 @@ const config = require("config");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator/check");
+const Post = require("../../models/Post");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
@@ -72,7 +73,10 @@ router.post(
     if (status) profileFields.status = status;
     if (githubusername) profileFields.githubusername = githubusername;
     if (skills) {
-      profileFields.skills = skills.split(",").map((skill) => skill.trim());
+      profileFields.skills = skills
+        .toString()
+        .split(",")
+        .map((skill) => skill.trim()); //trim to remove spaces
     }
     //build social object
     profileFields.social = {};
@@ -126,10 +130,9 @@ router.get("/", async (req, res) => {
 
 router.get("/user/:user_id", async (req, res) => {
   try {
-    const profile = await Profile.find({ user: req.params.user_id }).populate(
-      "user",
-      ["name", "avatar"]
-    );
+    const profile = await Profile.findOne({
+      user: req.params.user_id,
+    }).populate("user", ["name", "avatar"]);
 
     if (!profile)
       return res.status(400).json({ msg: "There is no profile for this user" });
@@ -152,7 +155,8 @@ router.get("/user/:user_id", async (req, res) => {
 
 router.delete("/", auth, async (req, res) => {
   try {
-    //@todo - remove users posts
+    //remove use posts
+    await Post.deleteMany({ user: req.user.id });
     //Remove Profile
     await Profile.findOneAndRemove({ user: req.user.id });
     //remove user
@@ -317,11 +321,11 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
 router.get("/github/:username", async (req, res) => {
   try {
     const option = {
-      uri: `https://api.github.com/users/${
+      uri: encodeURI(`https://api.github.com/users/${
         req.params.username
-      }/repos?per_pages=5&sort=created:asc&client_id=${config.get(
-        "githubClientId"
-      )}&client_secret=${config.get("githubSecret")}`,
+      }/repos?per_page=5&
+            sort=created:asc&client_id=${config.get("githubClientId")}&
+            client_secret=${config.get("githubSecret")}`),
       method: "GET",
       headers: { "user-agent": "node.js" },
     };

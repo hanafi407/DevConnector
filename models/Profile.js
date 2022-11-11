@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+
 const ProfileSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: "user", //the user model
   },
   company: {
     type: String,
@@ -27,6 +28,7 @@ const ProfileSchema = new mongoose.Schema({
   githubusername: {
     type: String,
   },
+  
   experience: [
     {
       title: {
@@ -47,7 +49,7 @@ const ProfileSchema = new mongoose.Schema({
       to: {
         type: Date,
       },
-      cureent: {
+      current: {
         type: Boolean,
         default: false,
       },

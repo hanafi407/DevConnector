@@ -20,7 +20,8 @@
     "gravatar": "^1.8.2",
     "http-proxy-middleware": "^2.0.6",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.6.6",
+    "mongoose": "^6.7.1",
+    "react-error-boundary": "^3.1.4",
     "request": "^2.88.2"
   },
   "devDependencies": {
