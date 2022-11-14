@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import PropTypes from "prop-types";
 import Moment from "react-moment";
 import { connect } from "react-redux";
 import { deleteEducation } from "../../action/profile";
@@ -34,10 +33,12 @@ const Education = ({ education, deleteEducation }) => {
       <h2 className='my-2'>Education Credential</h2>
       <table className='table'>
         <thead>
-          <th>School</th>
-          <th className='hide-sm'>Degree</th>
-          <th className='hide-sm'>Years</th>
-          <th className='hide-sm'></th>
+          <tr>
+            <th>School</th>
+            <th className='hide-sm'>Degree</th>
+            <th className='hide-sm'>Years</th>
+            <th className='hide-sm'></th>
+          </tr>
         </thead>
 
         <tbody>{educations}</tbody>
@@ -46,9 +47,9 @@ const Education = ({ education, deleteEducation }) => {
   );
 };
 
-Education.propTypes = {
-  education: PropTypes.array.isRequired,
-  deleteEducation:PropTypes.array.isRequired,
-};
+// Education.propTypes = {
+//   education: PropTypes.array.isRequired,
+//   deleteEducation:PropTypes.array.isRequired,
+// };
 
 export default connect(null, { deleteEducation })(Education);
