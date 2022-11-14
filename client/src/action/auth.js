@@ -7,7 +7,11 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+<<<<<<< HEAD
   LOGOUT,CLEAR_PROFILE
+=======
+  LOGOUT,
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -88,7 +92,10 @@ export const login = (email, password) => async (dispatch) => {
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b
     dispatch({
       type: LOGIN_FAIL,
     });
@@ -98,5 +105,8 @@ export const login = (email, password) => async (dispatch) => {
 //Logout / Clear profile
 export const logout = () => (dispatch) => {
   dispatch({ type: LOGOUT });
+<<<<<<< HEAD
   dispatch({ type: CLEAR_PROFILE });
+=======
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b
 };

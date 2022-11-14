@@ -6,6 +6,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
+<<<<<<< HEAD
 import CreateProfile from "./components/profile-form/CreateProfile";
 import EditProfile from "./components/profile-form/EditProfile";
 import AddExperience from "./components/profile-form/AddExperience";
@@ -15,6 +16,9 @@ import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
 import PrivateRoute from "./components/routing/PrivateRoute";
+=======
+import PrivateRoute from './components/routing/PrivateRoute';
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b
 import "./App.css";
 //redux
 import { Provider } from "react-redux";
@@ -30,7 +34,11 @@ if (localStorage.token) {
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
+<<<<<<< HEAD
   }, []);
+=======
+  },[]);
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b
   return (
     <Provider store={store}>
       <Router>
@@ -42,6 +50,7 @@ const App = () => {
             <Switch>
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
+<<<<<<< HEAD
               <Route exact path='/profiles' component={Profiles} />
               <Route exact path='/profile/:id' component={Profile} />
               
@@ -68,6 +77,9 @@ const App = () => {
               />
               <PrivateRoute exact path='/posts' component={Posts} />
               <PrivateRoute exact path='/posts/:id' component={Post} />
+=======
+              <PrivateRoute exact path='/dashboard' component={Dashboard} />
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b
             </Switch>
           </section>
         </Fragment>

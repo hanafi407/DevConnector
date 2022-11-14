@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -47,12 +48,31 @@ const Dashboard = ({
         </Fragment>
       )}
     </Fragment>
+=======
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getCurrentProfile } from "../../action/profile";
+
+const Dashboard = ({ getCurrentProfile, auth, profile }) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, []);
+
+  return (
+    <div>
+      <h1>Dashboard</h1>
+    </div>
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b
   );
 };
 
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
+<<<<<<< HEAD
   deleteAccount:PropTypes.func.isRequired,
+=======
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -62,4 +82,8 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
+<<<<<<< HEAD
 export default connect(mapStateToProps, { getCurrentProfile,deleteAccount })(Dashboard);
+=======
+export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b

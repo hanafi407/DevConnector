@@ -1,4 +1,5 @@
 import axios from "axios";
+<<<<<<< HEAD
 import {
   ACCOUNT_DELETED,
   CLEAR_PROFILE,
@@ -8,6 +9,10 @@ import {
   GET_PROFILES,GET_REPOS
 } from "./types";
 import { setAlert } from "./alert";
+=======
+import { setAlert } from "./alert";
+import { GET_PROFILE, PROFILE_ERROR } from "./types";
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b
 
 //Get current users profile
 export const getCurrentProfile = () => async (dispatch) => {
@@ -28,6 +33,7 @@ export const getCurrentProfile = () => async (dispatch) => {
     });
   }
 };
+<<<<<<< HEAD
 
 //Get all profiles
 export const getProfiles = () => async (dispatch) => {
@@ -264,3 +270,5 @@ export const deleteAccount = (id) => async (dispatch) => {
     }
   }
 };
+=======
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b

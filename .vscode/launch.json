@@ -8,7 +8,11 @@
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",
+<<<<<<< HEAD
       "url": "http://localhost:3000/create-profile",
+=======
+      "url": "http://localhost:3000",
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b
       "webRoot": "${workspaceFolder}"
     }
   ]

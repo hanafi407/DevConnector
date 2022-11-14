@@ -8,6 +8,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const GET_PROFILE = "GET_PROFILE";
+<<<<<<< HEAD
 export const GET_PROFILES = "GET_PROFILES";
 export const CLEAR_PROFILE = "CLEAR_PROFILE";
 export const PROFILE_ERROR = "PROFILE_ERROR";
@@ -24,3 +25,6 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";
 
 
+=======
+export const PROFILE_ERROR = "PROFILE_ERROR";
+>>>>>>> 9d4d706d8c8070400b4a7dbbe9b8eab7bbf8776b
