@@ -1,28 +1,49 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL } from "../action/types";
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT,
+  ACCOUNT_DELETED,
+} from "../action/types";
+//import { response } from 'express';
 
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
-  loading: true,
+  loading: true, //when the data gets loaded then it will set to false
   user: null,
 };
 
 export default function (state = initialState, action) {
-  const { type, payload } = action;
-  switch (type) {
-    case REGISTER_SUCCESS:
-      localStorage.setItem("token", payload.token);
+  switch (action.type) {
+    case USER_LOADED:
       return {
         ...state,
-        ...payload,
+        isAuthenticated: true,
+        loading: false,
+        user: action.payload,
+      };
+    case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
+      localStorage.setItem("token", action.payload.token);
+      return {
+        ...state,
+        ...action.payload,
         isAuthenticated: true,
         loading: false,
       };
     case REGISTER_FAIL:
-      loacalStorage.removeItem("token");
+    case AUTH_ERROR:
+    case LOGIN_FAIL:
+    case LOGOUT:
+    case ACCOUNT_DELETED:
+      localStorage.removeItem("token");
       return {
         ...state,
-        token:null,
+        token: null,
         isAuthenticated: false,
         loading: false,
       };

@@ -1,43 +1,44 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../../action/auth";
 import PropTypes from "prop-types";
+import { logout } from "../../action/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
-    <li>
-      <Link to="/profiles">Developers</Link>
-    </li>
-    <li>
-      <Link to="/posts">Posts</Link>
-    </li>
-    
       <li>
-        <Link to='/dashboard'>
-          <i className='fas fa-user' />
-          <span className='hide-sm'> Dashboard</span>
+        <Link to='/profiles'>
+          <span className='hide-sm'>Developers</span>
         </Link>
       </li>
       <li>
-        <a onClick={logout} href='/login'>
-          <i className='fas fa-sign-out-alt' />
-          <span className='hide-sm'>Log Out</span>
+        <Link to='/posts'>
+          <span className='hide-sm'>Posts</span>
+        </Link>
+      </li>
       <li>
-        <a onClick={logout} href='!#'>
-          <i className='fas fa-sign-out-alt'/>
-          <span className='hide-sm' >Log Out</span>
+        <Link to='/dashboard'>
+          <FontAwesomeIcon icon={["fas", "user"]} />{" "}
+          <span className='hide-sm'>Dashboard</span>
+        </Link>
+      </li>
+      <li>
+        <a onClick={logout} href='#!'>
+          <FontAwesomeIcon icon={["fas", "sign-out-alt"]} />{" "}
+          <span className='hide-sm'>Logout</span>
         </a>
       </li>
     </ul>
   );
+
   const guestLinks = (
     <ul>
       <li>
-        <Link to='/profiles'>Developers</Link>
-        <a href='!#'>Developers</a>
-        <a href='!#'>Developers</a>
+        <Link to='/profiles'>
+          <span className='hide-sm'>Developers</span>
+        </Link>
       </li>
       <li>
         <Link to='/register'>Register</Link>
@@ -47,14 +48,14 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       </li>
     </ul>
   );
+
   return (
     <nav className='navbar bg-dark'>
       <h1>
         <Link to='/'>
-          <i className='fas fa-code'></i> DevConnector
+          <FontAwesomeIcon icon={["fas", "code"]} /> DevConnector
         </Link>
       </h1>
-
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
       )}
@@ -62,7 +63,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 };
 
-Navbar.propType = {
+Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 };

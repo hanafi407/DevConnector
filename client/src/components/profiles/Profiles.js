@@ -2,13 +2,16 @@ import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
-import { getProfiles } from "../../action/profile";
 import ProfileItem from "./ProfileItem";
+import { getProfiles } from "../../action/profile";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
     getProfiles();
   }, [getProfiles]);
+
   return (
     <Fragment>
       {loading ? (
@@ -17,32 +20,31 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Fragment>
           <h1 className='large text-primary'>Developers</h1>
           <p className='lead'>
-            <i className='fab fa-connectdevelop'></i> Browse and connect with
-            developers
+            <FontAwesomeIcon icon={["fab", "connectdevelop"]} />
+            Browse and Connect with Developers
           </p>
-          <div className='profiles'>
+          <div className='Profiles'>
             {profiles.length > 0 ? (
               profiles.map((profile) => (
                 <ProfileItem key={profile._id} profile={profile} />
               ))
             ) : (
-              <h4>No Profile found...</h4>
+              <h4> No Profiles Found</h4>
             )}
           </div>
-
         </Fragment>
       )}
     </Fragment>
   );
 };
 
+Profiles.propTypes = {
+  getProfiles: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   profile: state.profile,
 });
-
-Profiles.propTypes = {
-  profile: PropTypes.object.isRequired,
-  getProfiles: PropTypes.func.isRequired,
-};
 
 export default connect(mapStateToProps, { getProfiles })(Profiles);

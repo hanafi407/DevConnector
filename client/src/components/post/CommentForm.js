@@ -6,10 +6,20 @@ import { addComment } from "../../action/post";
 const CommentForm = ({ postId, addComment }) => {
   const [text, setText] = useState("");
 
+  // const onSubmit = e => {
+  //     e.preventDefault();
+  //     addComment(postId, {text});
+  //     setText('');
+  // }
+
+  // const onChange = e => {
+  //     setText(e.target.value);
+  // }
+
   return (
     <div className='post-form'>
       <div className='bg-primary p'>
-        <h3>Leave a comment</h3>
+        <h3>Leave a Comment</h3>
       </div>
       <form
         className='form my-1'
@@ -23,7 +33,7 @@ const CommentForm = ({ postId, addComment }) => {
           name='text'
           cols='30'
           rows='5'
-          placeholder='Create a post'
+          placeholder='Create a comment'
           value={text}
           onChange={(e) => setText(e.target.value)}
           required

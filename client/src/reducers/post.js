@@ -1,12 +1,12 @@
 import {
-  ADD_COMMENT,
-  ADD_POST,
-  DELETE_POST,
-  GET_POST,
   GET_POSTS,
-  POSTS_ERROR,
-  REMOVE_COMMENT,
+  POST_ERROR,
   UPDATE_LIKES,
+  DELETE_POST,
+  ADD_POST,
+  GET_POST,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
 } from "../action/types";
 
 const initialState = {
@@ -14,54 +14,55 @@ const initialState = {
   post: null,
   loading: true,
   error: {},
+  comments: [],
 };
 
 export default function (state = initialState, action) {
-  const { type, payload } = action;
-
-  switch (type) {
+  switch (action.type) {
     case GET_POSTS:
       return {
         ...state,
-        posts: payload,
+        posts: action.payload,
         loading: false,
       };
     case GET_POST:
       return {
         ...state,
-        post: payload,
+        post: action.payload,
         loading: false,
       };
     case ADD_POST:
       return {
         ...state,
-        posts: [payload, ...state.posts],
+        posts: [action.payload, ...state.posts],
         loading: false,
       };
-    case DELETE_POST:
+    case POST_ERROR:
       return {
         ...state,
-        posts: state.posts.filter((post) => post._id !== payload),
-        loading: false,
-      };
-    case POSTS_ERROR:
-      return {
-        ...state,
-        error: payload,
+        error: action.payload,
         loading: false,
       };
     case UPDATE_LIKES:
       return {
         ...state,
         posts: state.posts.map((post) =>
-          post._id === payload.id ? { ...post, likes: payload.likes } : post
-        ),
+          post._id === action.payload.postId
+            ? { ...post, likes: action.payload.likes }
+            : post
+        ), //post remains same, likes are updated to likes in the payload
+        loading: false,
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== action.payload),
         loading: false,
       };
     case ADD_COMMENT:
       return {
         ...state,
-        post: { ...state.post, comments: payload },
+        post: { ...state.post, comments: action.payload }, //Payload is the array of comments
         loading: false,
       };
     case REMOVE_COMMENT:
@@ -70,7 +71,7 @@ export default function (state = initialState, action) {
         post: {
           ...state.post,
           comments: state.post.comments.filter(
-            (comment) => comment._id !== payload
+            (comment) => comment._id !== action.payload
           ),
         },
         loading: false,

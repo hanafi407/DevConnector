@@ -1,14 +1,14 @@
 import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
-import { getProfileById } from "../../action/profile";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
 import ProfileGithub from "./ProfileGithub";
+import { getProfileById } from "../../action/profile";
 
 const Profile = ({
   getProfileById,
@@ -16,10 +16,9 @@ const Profile = ({
   auth,
   match,
 }) => {
-  const { id } = useParams();
   useEffect(() => {
-    getProfileById(id);
-  }, [getProfileById, id]);
+    getProfileById(match.params.id);
+  }, [getProfileById, match.params.id]);
 
   return (
     <Fragment>
@@ -52,7 +51,7 @@ const Profile = ({
                   ))}
                 </Fragment>
               ) : (
-                <h4>No experience credentials</h4>
+                <h4>No Experience Credentials</h4>
               )}
             </div>
 
@@ -68,12 +67,12 @@ const Profile = ({
                   ))}
                 </Fragment>
               ) : (
-                <h4>No education credentials</h4>
+                <h4>No Education Credentials</h4>
               )}
             </div>
 
             {profile.githubusername && (
-              <ProfileGithub username={profile.githubusername}/>
+              <ProfileGithub username={profile.githubusername} />
             )}
           </div>
         </Fragment>
